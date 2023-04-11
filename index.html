@@ -1,30 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Getting IP address with JavaScript</title>
+  <style>
+    .ip_address {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: monospace;
+    color: #1bff00;
+}
+
+body {
+    margin: 74px 271px;
+    padding: 0;
+    background: black;
+}
+
+h2 {
+    color: #fff;
+}
+  </style>
 </head>
 <body>
-    <div class="Signup">
-        <div class="Wel">
-            <h1>Welcome to MDM</h1>
-            <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda iure</span>
-            <button type="submit">Know more</button>
-        </div>
-        
-        <form action="">
-            <div class="signin">
-                <h1>Signin</h1>
-                <input type="text" placeholder="Email or username" required>
-                <hr>
-                <input type="password" placeholder="Password" required>
-                <hr>
-                <button type="submit">Login</button>
-            </div>
-        </form>
+  <section>
+    <div class="card">
+      <h2>Getting IP address with JavaScript</h2>
+      <div class="ip_address"></div>
     </div>
+  </section>
+
+  <script>
+    var ip_address = document.querySelector(".ip_address");
+    setTimeout(()=>{
+      fetch("https://api.ipify.org/?format=json").then(re=>re.json()).then(data=>{
+        console.log(data);
+        ip_address.innerHTML = "Your IP is: " + data.ip;
+      })
+    },1000)
+  </script>
 </body>
 </html>
