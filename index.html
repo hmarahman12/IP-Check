@@ -1,42 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Getting IP address with JavaScript</title>
-  <style>
-    .ip_address {
-    font-size: 25px;
-    font-weight: bold;
-    font-family: monospace;
-    color: #1bff00;
-}
-
-body {
-    margin: 74px 271px;
-    padding: 0;
-    background: black;
-}
-
-h2 {
-    color: #fff;
-}
-  </style>
-</head>
-<body>
-  <section>
-    <div class="card">
-      <h2>Getting IP address with JavaScript</h2>
-      <div class="ip_address"></div>
-    </div>
-  </section>
-
-  <script>
-    var ip_address = document.querySelector(".ip_address");
-    setTimeout(()=>{
-      fetch("https://api.ipify.org/?format=json").then(re=>re.json()).then(data=>{
-        console.log(data);
-        ip_address.innerHTML = "Your IP is: " + data.ip;
-      })
-    },1000)
-  </script>
-</body>
+  <head>
+    <title>User IP, Location, and Country Check</title>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>User IP, Location, and Country Check</h1>
+    <p id="ip"></p>
+    <p id="location"></p>
+    <p id="country"></p>
+    <script>
+      // Use jQuery to make an AJAX request to the IP API with additional parameters for location and country data
+      $.get("https://ipapi.co/json/", function(data) {
+        // Update the content of the 'ip' element with the user's IP address
+        $("#ip").text("Your IP address is " + data.ip);
+        // Update the content of the 'location' element with the user's location data
+        $("#location").text("You are located in " + data.city + ", " + data.region + ".");
+        // Update the content of the 'country' element with the user's country data
+        $("#country").text("You are located in " + data.country_name + ".");
+      });
+    </script>
+  </body>
 </html>
